@@ -1424,8 +1424,11 @@ main() {
   enable_service dnsmasq
 
   if [[ ${INSTALL_WEB} == true ]]; then
-    start_service lighttpd
-    enable_service lighttpd
+    # When called from update.sh, check to see if lighttpd was already running
+    if [[ -z "${LIGHTTPD_ENABLED}" ]] || [[ "${LIGHTTPD_ENABLED}" -ge 1 ]]; then
+      start_service lighttpd
+      enable_service lighttpd
+    fi
   fi
 
   runGravity
