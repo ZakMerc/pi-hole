@@ -1428,6 +1428,8 @@ main() {
     if [[ -z "${LIGHTTPD_ENABLED}" ]] || [[ "${LIGHTTPD_ENABLED}" -ge 1 ]]; then
       start_service lighttpd
       enable_service lighttpd
+    else
+      echo "::: Lighttpd service was disabled prior to update; not re-enabling service"
     fi
   fi
 
